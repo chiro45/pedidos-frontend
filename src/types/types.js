@@ -2,6 +2,8 @@ export const types ={
 
     authStartLogin: '[auth] Start Login',
     authlogin: '[auth] Login',
+    authlogout: '[auth] Logout',
+    //asd
 
 
     uiOpenModal: '[ui] Open Modal',
@@ -10,6 +12,7 @@ export const types ={
 
     addNewItem: '[item] Add New Item',
     deleteItem: '[item] Delete Item',
+    eventLogout: '[item] Event Logout',
 
 
     startSendOrder: '[orders] Start Send Order',

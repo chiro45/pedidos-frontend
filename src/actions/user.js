@@ -12,3 +12,11 @@ export const login = (name, mesa)=>({
     
        
 })
+
+
+export const logout = ()=>({
+    
+    type: types.authlogout
+
+   
+})

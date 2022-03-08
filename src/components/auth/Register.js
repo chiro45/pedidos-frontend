@@ -12,18 +12,17 @@ const dispatch = useDispatch();
 const [ formValues, handleInputChange ] =  useForm()
 
 const handleSubmit = (e)=>{
-  const {name, mesa} = formValues
+  const {name, mesa, telefono} = formValues
   e.preventDefault()
-   if(name.length < 2 ){
-     Swal.fire('Error','Ambos campos deben estar llenos', 'error')
-    }else if(mesa.length < 1){
-        Swal.fire('Error','Ambos campos deben estar llenos', 'error')   
+   if( name === undefined || name.length < 2){
+     Swal.fire('Error', 'Todos los  campos deben estar llenos', 'error')
+    }else if( mesa === undefined || mesa.length < 1){
+        Swal.fire('Error',' Todos los campos deben estar llenos', 'error')   
     }else{
             dispatch(login(name, mesa))
         Swal.fire('Perfecto','Continua tu pedido', 'success')
     }
 }
-
 
 
  return (
@@ -40,14 +39,16 @@ const handleSubmit = (e)=>{
                         <input type='text' 
                         name='name'
                         onChange={handleInputChange}
-                         placeholder='Nombre'/>
+                         placeholder='Nombre'
+                         autoComplete='off'/>
                         <input type='text' 
                         name='mesa'
                         onChange={handleInputChange}
-                         placeholder='Mesa'/>
+                         placeholder='Mesa'
+                         autoComplete='off'/>
                 </div>
                 <div className='register__container-button'>
-                        <button type='submit'className='register__buton'>Confirmar</button>
+                        <button type='submit'className='register__buton'>Confirmar <i className="fa-solid fa-check"></i></button>
                 </div>
             </form>
        </div>

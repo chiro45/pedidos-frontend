@@ -16,10 +16,13 @@ export const itemsReducer = (state = initialState, action) => {
             case types.deleteItem:
                 return {
                     ...state,
-                    items: state.items.filter( 
-                        e => (e.id !== state.activeEvent.id)
-                    )
+                    items: state.items.filter( e => (e.id !=action.payload.id))
                 } 
+            
+            case types.authlogout:
+                return{
+                    ...initialState
+                }    
         
     
         default:

@@ -3,11 +3,7 @@ import { types } from "../types/types";
 
 
 const initialState={
-    register: true,
-            user: {
-                name : 'juan',
-                mesa:'juan',
-            }
+    register:false
     
 }
 
@@ -25,6 +21,10 @@ export const authReducer = (state = initialState, action)=>{
                 mesa: action.payload.mesa
             }
         }
+        case types.authlogout:
+            return{
+                register: false
+            }
         default:
             return state
     }
