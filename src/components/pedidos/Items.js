@@ -1,24 +1,29 @@
-import { isDate } from 'moment';
+
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import Swal from 'sweetalert2'
 import { addItem } from '../../actions/orders'
 const initState = 0;
 export const Items = ({id, nombre, precio}) => {
+    
     const dispatch =  useDispatch()
     const [cant, setCant] = useState(initState); 
     const [input, setInput] = useState('');
+    let [valor, setValor]= useState(initState)
+    
     const handleAdd = (e)=>{
      let name = e.target.value
      let id =  Math.random() * (1 - 100) + 1;
      if(cant <=0){
          setCant(initState)
+         setValor(initState)
         Swal.fire('Error', 'No se puede pedir un producto sin su cantidad', 'error')
      }else{
-         dispatch(addItem(name, cant, input, id))
+         dispatch(addItem(name, cant, input, id, valor))
          Swal.fire('Correcto', 'Agregado al pedido', 'success')
          setInput('')
          setCant(initState)
+         setValor(initState)
      }
     
 
@@ -26,9 +31,13 @@ export const Items = ({id, nombre, precio}) => {
  }
  const handleOneMore = ()=>{
     setCant(cant + 1)
+    setValor(valor += precio)
+    
  }
 const handleOneLess = ()=>{
     setCant(cant - 1)
+    setValor(valor -= precio)
+    
 }
 
 const handleInputChange = ({target})=>{
@@ -42,7 +51,7 @@ const handleInputChange = ({target})=>{
           <div className='pedidos__container-itemdesc'>
           <p className='pedidos__name'>{nombre}</p> 
           <div className='container__cantidad'>
-          <p>{precio}</p>
+          <p> $ {precio}</p>
           <label>Precio</label>
           </div>
           <div className='container__cantidad'>

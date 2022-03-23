@@ -1,6 +1,7 @@
 
 
 import moment from 'moment'
+import { useState } from 'react'
 
 import Modal from 'react-modal/lib/components/Modal'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,10 +9,14 @@ import Swal from 'sweetalert2'
 import { itemDelete, itemsLogout } from '../../actions/orders'
 import { closeModal, openModal } from '../../actions/ui'
 import { logout } from '../../actions/user'
+moment.locale('es');
 export const Carrito = () => {
     
     const {authReducer, itemsReducer, uiReducer} = useSelector(state => state) 
     const dispatch = useDispatch()
+    
+
+
 
     const handleClick = ()=>{
         dispatch(openModal())
@@ -30,13 +35,14 @@ export const Carrito = () => {
             nombre: authReducer.user.name,
             mesa: authReducer.user.mesa,
             pedido: itemsReducer.items,
+            dateCreated: moment().locale('ar').format('LL'),
             date: moment().locale('ar').format('lll')
         }
 
         try {   
-            console.log(data.date)
+           
             //http://192.168.77.100:4000/api/send > pruebas local diferentes dispositivos
-          await  fetch('http://192.168.77.100:4000/api/send',{
+          await  fetch('http://localhost:4000/api/send',{
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers:{
@@ -60,6 +66,7 @@ export const Carrito = () => {
         dispatch(itemDelete(target.id))
         console.log(target.id)
     }
+   
   return (
     <div className='modalScreen__container'>
     <div className='modal__container'>
@@ -78,39 +85,47 @@ export const Carrito = () => {
         <h1>Mi Pedido:</h1> 
        {
            itemsReducer.items.map(
-               (item, i) => (
-              
-                <div key={i} className='modal__container-item'>
+               ({name, sobre, cantidad, id}, i) => (
+                   <div key={i} className='modal__container-item'>
                     <div>
-                        <span  className='modal__item-name'>{item.name}</span>
+                        <span  className='modal__item-name'>{name || '43'}</span>
                         {
-                            (item.sobre.length > 2)
-                                        ? <p className='modal__item-nota'>Nota:{item.sobre}</p>
-                                        : null
+                            (sobre.length > 2)
+                            ? <p className='modal__item-nota'>Nota:{sobre}</p>
+                            : null
                         }
                     </div>
-                    <div><p className='modal__item-cantidad' >{item.cantidad}</p></div>
+                    <div><p className='modal__item-cantidad' >{cantidad}</p></div>
                 
                      <div >
                      <button  type='button' 
                       
-                     className='modal__item-button' 
-                     >
-                            <i onClick={handleDelete} id={item.id} className="fa-solid fa-trash-can">
+                      className='modal__item-button' 
+                      >
+                            <i onClick={handleDelete} id={id} className="fa-solid fa-trash-can">
                     </i>
                          
                     </button>
+                                
                      </div>
                     
                     
+                <div>
+                </div>
                 </div>
                 
-           ))
-       }
-       
+                ))
+                
+            }
+
+            <div>
+                <h1>{itemsReducer.items.total}</h1>
+            </div>
+      
         <div className='container__button-Submit'>
-                <button onClick={handleSubmit}>Enviar Pedido</button>    
+                <button onClick={handleSubmit}>Enviar Pedido</button>   
         </div>
+      
     </Modal>
 
 

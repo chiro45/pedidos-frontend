@@ -21,7 +21,8 @@ export const itemsReducer = (state = initialState, action) => {
             
             case types.authlogout:
                 return{
-                    ...initialState
+                    ...initialState,
+                    items:[]
                 }    
         
     
