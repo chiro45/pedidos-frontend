@@ -42,7 +42,7 @@ export const Carrito = () => {
         try {   
            
             //http://192.168.77.100:4000/api/send > pruebas local diferentes dispositivos
-          await  fetch('http://localhost:4000/api/send',{
+          await  fetch('http://192.168.77.101:4000/api/send',{
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers:{

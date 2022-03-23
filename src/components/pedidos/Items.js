@@ -19,7 +19,7 @@ export const Items = ({id, nombre, precio}) => {
          setValor(initState)
         Swal.fire('Error', 'No se puede pedir un producto sin su cantidad', 'error')
      }else{
-         dispatch(addItem(name, cant, input, id, valor))
+         dispatch(addItem(name, cant, input, id,valor, precio))
          Swal.fire('Correcto', 'Agregado al pedido', 'success')
          setInput('')
          setCant(initState)

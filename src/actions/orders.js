@@ -1,13 +1,14 @@
 import { types } from "../types/types";
 
-export const addItem = (name, cantidad, sobre = undefined, id, precio)=>({
+export const addItem = (name, cantidad, sobre = undefined, id, precio, precioUnidad)=>({
     type: types.addNewItem,
     payload:{
          name,
          cantidad,
          sobre,
          id,
-         precio
+         precio,
+         precioUnidad
 
     }
 })
