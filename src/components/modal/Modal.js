@@ -33,6 +33,7 @@ export const Carrito = () => {
         }
         const data = {
             nombre: authReducer.user.name,
+            state: 'NoConfirmado',
             mesa: authReducer.user.mesa,
             pedido: itemsReducer.items,
             dateCreated: moment().locale('ar').format('LL'),
@@ -42,7 +43,7 @@ export const Carrito = () => {
         try {   
            
             //http://192.168.77.100:4000/api/send > pruebas local diferentes dispositivos
-          await  fetch('http://192.168.77.101:4000/api/send',{
+          await  fetch('http://192.168.77.111:7000/api/send',{
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers:{
