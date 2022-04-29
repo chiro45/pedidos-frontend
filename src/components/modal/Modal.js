@@ -43,7 +43,7 @@ export const Carrito = () => {
         try {   
            
             //http://192.168.77.100:4000/api/send > pruebas local diferentes dispositivos
-          await  fetch('http://192.168.77.100:4000/api/send',{
+          await  fetch('http://192.168.77.104:4000/api/send',{
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers:{
@@ -89,7 +89,7 @@ export const Carrito = () => {
                ({name, sobre, cantidad, id}, i) => (
                    <div key={i} className='modal__container-item'>
                     <div>
-                        <span  className='modal__item-name'>{name || '43'}</span>
+                        <span  className='modal__item-name'>{name}</span>
                         {
                             (sobre.length > 2)
                             ? <p className='modal__item-nota'>Nota:{sobre}</p>

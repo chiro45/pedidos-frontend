@@ -13,6 +13,7 @@ export const Items = ({id, nombre, precio}) => {
     
     const handleAdd = (e)=>{
      let name = e.target.value
+        if(name ===undefined){return Swal.fire('Error', 'Agrega nuevamente', 'error') }
      let id =  Math.random() * (1 - 100) + 1;
      if(cant <=0){
          setCant(initState)
@@ -33,6 +34,7 @@ export const Items = ({id, nombre, precio}) => {
     setCant(cant + 1)
     setValor(valor += precio)
     
+    
  }
 const handleOneLess = ()=>{
     setCant(cant - 1)
@@ -51,7 +53,7 @@ const handleInputChange = ({target})=>{
           <div className='pedidos__container-itemdesc'>
           <p className='pedidos__name'>{nombre}</p> 
           <div className='container__cantidad'>
-          <p> $ {precio}</p>
+          <p>  {precio}</p>
           <label>Precio</label>
           </div>
           <div className='container__cantidad'>

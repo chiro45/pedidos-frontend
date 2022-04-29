@@ -44,7 +44,9 @@ html{
     align-items: center;
     margin-left: -.3rem;
     padding: .4rem;
+   
 }
+
 .pedidos__container-selector select{
     width: 90%;
     font-size: 1.2rem;
@@ -53,6 +55,9 @@ html{
     border-radius: .4rem;
     outline: none;  
    
+}
+.pedidos__container-selector select::before{
+    height: 250px;
 }
 .container__pedido-fixed{
     bottom: 0rem;

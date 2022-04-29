@@ -1,6 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import {panaderia, cafes, jugos, tortas, } from '../../helpers/listados';
+import { bebidas } from '../../helpers/bebidas';
+import { brunchs } from '../../helpers/brunchs';
+import { cafes } from '../../helpers/cafes';
+import { cervezas } from '../../helpers/cervezas';
+import { jugos } from '../../helpers/jugos';
+import { menuEjecutivo } from '../../helpers/menuEjecutivo';
+import { panaderia } from '../../helpers/panaderia';
+import { picoteo } from '../../helpers/picoteo';
+import { smoothies } from '../../helpers/smoothies';
+import { tes } from '../../helpers/tes';
+import { tortas } from '../../helpers/tortas';
+import { tragos } from '../../helpers/tragos';
+import { vinos } from '../../helpers/vinos';
+
 
 import { Carrito } from '../modal/Modal';
 import { Items } from './Items';
@@ -8,12 +21,18 @@ export const PedidosLogin = () => {
 
     const {authReducer}  = useSelector(state=> state)
     const [state, setstate] = useState([]);
+
+    
+    
     const handleChange = ({target})=>{ 
         
         switch (target.value) {
          case 'cafes':
             setstate(cafes)
-             break;
+            break;
+            case 'tes':
+                setstate(tes)
+            break;
              case 'panaderia':
             setstate(panaderia)
              break;
@@ -22,7 +41,31 @@ export const PedidosLogin = () => {
             break;
              case 'jugos':
                  setstate(jugos)
+             break; 
+             case 'smoothies':
+                 setstate(smoothies)
              break;
+             case 'brunchs':
+                setstate(brunchs)
+            break;
+            case 'picoteo':
+                setstate(picoteo)
+            break;
+            case 'bebidas':
+                setstate(bebidas)
+            break;
+            case 'cervezas':
+            setstate(cervezas)
+            break;
+            case 'tragos':
+            setstate(tragos)
+            break;
+            case 'vinos':
+            setstate(vinos)
+            break;
+            case 'menuEjecutivo':
+            setstate(menuEjecutivo)
+            break;
              
              default:
              setstate('cafes');
@@ -46,13 +89,21 @@ export const PedidosLogin = () => {
                          <h2>Selecciona tu Orden <i className="fa-solid fa-pen-to-square"></i></h2>
                </div>
                <div className='pedidos__container-selector'>
-                      <select onChange={handleChange} defaultValue='cafes'>
+                      <select  onChange={handleChange} defaultValue='cafes'>
                           <option disabled value='categorie'>Categorias</option>
-                          <optgroup>
+                          <optgroup className='optGroup' >
                           <option value='cafes'>Cafes</option>
+                          <option value='tes'>Tes</option>
                           <option value='panaderia'>Panaderia</option>
                           <option value='tortas'>Tortas</option>
                           <option value='jugos'>Jugos</option>
+                          <option value='brunchs'>Brunch</option>
+                          <option value='picoteo'>Picoteo</option>
+                          <option value='bebidas'>Bebidas</option>
+                          <option value='cervezas'>Cervezas</option>
+                          <option value='tragos'>Tragos</option>
+                          <option value='vinos'>Vinos</option>
+                          <option value='menuEjecutivo'>Menu Ejecutivo</option>
                           </optgroup>
                          
                       </select>
