@@ -1,7 +1,7 @@
 
 
 import moment from 'moment'
-import { useState } from 'react'
+
 
 import Modal from 'react-modal/lib/components/Modal'
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,6 +10,9 @@ import { itemDelete, itemsLogout } from '../../actions/orders'
 import { closeModal, openModal } from '../../actions/ui'
 import { logout } from '../../actions/user'
 moment.locale('es');
+
+
+const API_URL = process.env.REACT_APP_API_URL
 export const Carrito = () => {
     
     const {authReducer, itemsReducer, uiReducer} = useSelector(state => state) 
@@ -37,12 +40,14 @@ export const Carrito = () => {
             mesa: authReducer.user.mesa,
             pedido: itemsReducer.items,
             dateCreated: moment().locale('ar').format('MM-DD-YYYY'),
-            date: moment().locale('ar').format('lll')
+            date: moment().locale('ar').format('lll'),
+            monto: null,
+
         }
 
         try {   
            
-            //http://192.168.77.100:4000/api/send > pruebas local diferentes dispositivos
+            //http://192.168.77.100:4000/api/send => pruebas local diferentes dispositivos
           await  fetch('http://192.168.77.104:4000/api/send',{
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -63,9 +68,9 @@ export const Carrito = () => {
        
     }
     const handleDelete = ({target})=>{
-        
+        console.log(process.env.API_URL)
         dispatch(itemDelete(target.id))
-        console.log(target.id)
+       
     }
    
   return (
